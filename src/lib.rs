@@ -8,7 +8,9 @@ type G1 = ark_bls12_381::G1Projective;
 type G2 = ark_bls12_381::G2Projective;
 
 pub fn export_g1_from_public_setup_parameters(max_degree: usize) -> Vec<G1> {
-    let file_in = File::open("../srs/public_setup_parameters/g1_coeffs.dat").unwrap();
+    let mut path = project_root::get_project_root().unwrap();
+    path.push("public_setup_parameters/g1_coeffs.dat");
+    let file_in = File::open(path).unwrap();
     let mut reader = BufReader::new(file_in);
 
     let mut line = String::new();
@@ -47,7 +49,9 @@ pub fn export_g1_from_public_setup_parameters(max_degree: usize) -> Vec<G1> {
 }
 
 pub fn export_g2_from_public_setup_parameters() -> Vec<G2> {
-    let file_in = File::open("../srs/public_setup_parameters/g2_coeffs.dat").unwrap();
+    let mut path = project_root::get_project_root().unwrap();
+    path.push("public_setup_parameters/g2_coeffs.dat");
+    let file_in = File::open(path).unwrap();
     let mut reader = BufReader::new(file_in);
 
     let mut line = String::new();
