@@ -1,1 +1,1 @@
-# srs
+# fork from https://github.com/findora-crypto/export-setup-parameters.
