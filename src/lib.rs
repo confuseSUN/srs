@@ -10,6 +10,7 @@ type G2 = ark_bls12_381::G2Projective;
 pub fn export_g1_from_public_setup_parameters(max_degree: usize) -> Vec<G1> {
     let mut path = project_root::get_project_root().unwrap();
     path.push("public_setup_parameters/g1_coeffs.dat");
+    println!("path = {:?}" , path);
     let file_in = File::open(path).unwrap();
     let mut reader = BufReader::new(file_in);
 
