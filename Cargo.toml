@@ -1,10 +1,10 @@
 [package]
-name = "pub_srs"
+name = "pub-srs"
 version = "0.1.0"
 edition = "2021"
 
 [lib]
-name = 'pub_srs'
+name = 'pub-srs'
 crate-type = ['rlib']
 
 [dependencies]
