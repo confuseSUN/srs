@@ -185,7 +185,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "pub_srs"
+name = "pub-srs"
 version = "0.1.0"
 dependencies = [
  "ark-bls12-381",

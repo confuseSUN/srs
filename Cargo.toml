@@ -3,10 +3,6 @@ name = "pub-srs"
 version = "0.1.0"
 edition = "2021"
 
-[lib]
-name = 'pub-srs'
-crate-type = ['rlib']
-
 [dependencies]
 ark-bls12-381 = "^0.3.0"
 text_io = "0.1.9"
