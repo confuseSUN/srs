@@ -1,18 +1,20 @@
-use std::{fs::File, io::{BufReader, BufRead}};
+use std::{fs::File, io::{BufReader, BufRead}, path:: PathBuf};
 
 use ark_bls12_381::{G1Affine, Fq, Fq2, G2Affine};
 use num_bigint::BigUint;
 use text_io::scan;
-use process_path::{get_executable_path, get_dylib_path};
 
 type G1 = ark_bls12_381::G1Projective;
 type G2 = ark_bls12_381::G2Projective;
 
 pub fn export_g1_from_public_setup_parameters(max_degree: usize) -> Vec<G1> {
-    let mut path = get_executable_path().unwrap();
-    path.push("public_setup_parameters/g1_coeffs.dat");
-    println!("path = {:?}" , path);
-    let file_in = File::open(path).unwrap();
+    let path  = file!();
+    let mut path_buf = PathBuf::new();
+    path_buf.push(path);
+    path_buf.pop();
+    path_buf.pop();
+    path_buf.push("public_setup_parameters/g1_coeffs.dat");
+    let file_in = File::open(path_buf).unwrap();
     let mut reader = BufReader::new(file_in);
 
     let mut line = String::new();
@@ -51,10 +53,13 @@ pub fn export_g1_from_public_setup_parameters(max_degree: usize) -> Vec<G1> {
 }
 
 pub fn export_g2_from_public_setup_parameters() -> Vec<G2> {
-    let mut path = get_dylib_path().unwrap();
-    path.push("public_setup_parameters/g2_coeffs.dat");
-    println!("path = {:?}" , path);
-    let file_in = File::open(path).unwrap();
+    let path  = file!();
+    let mut path_buf = PathBuf::new();
+    path_buf.push(path);
+    path_buf.pop();
+    path_buf.pop();
+    path_buf.push("public_setup_parameters/g2_coeffs.dat");
+    let file_in = File::open(path_buf).unwrap();
     let mut reader = BufReader::new(file_in);
 
     let mut line = String::new();
@@ -102,4 +107,11 @@ pub fn export_g2_from_public_setup_parameters() -> Vec<G2> {
     }
 
     g2
+}
+
+
+#[test]
+fn test(){
+  export_g1_from_public_setup_parameters(20);
+  export_g2_from_public_setup_parameters();
 }
